@@ -11,7 +11,13 @@ KEYVOXのスマートロックAPIを簡単に利用するためのFlutterパッ�
 
 ## インストール
 
-`pubspec.yaml`に以下を追加してください：
+こちらのリポジトリをクローン後、`pubspec.yaml`に以下を追加してください：
+
+```yaml
+dependencies:
+  keyvox_flutter:
+    path: ../keyvox_flutter ## このパスはリポジトリのパスに合わせてください
+```
 
 ## 使い方
 
