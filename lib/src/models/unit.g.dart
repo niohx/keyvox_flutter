@@ -9,10 +9,10 @@ part of 'unit.dart';
 _$UnitImpl _$$UnitImplFromJson(Map<String, dynamic> json) => _$UnitImpl(
       unitId: json['unitId'] as String,
       unitName: json['unitName'] as String,
-      lockIds: json['lockIds'] as String,
+      lockIds: _lockIdsFromJson(json['lockIds'] as String?),
       placeName: json['placeName'] as String,
       unitState: json['unitState'] as String,
-      unitType: json['unitType'] as String,
+      unitType: json['unitType'] as String?,
       placeType: json['placeType'] as String,
     );
 
@@ -20,7 +20,7 @@ Map<String, dynamic> _$$UnitImplToJson(_$UnitImpl instance) =>
     <String, dynamic>{
       'unitId': instance.unitId,
       'unitName': instance.unitName,
-      'lockIds': instance.lockIds,
+      'lockIds': _lockIdsToJson(instance.lockIds),
       'placeName': instance.placeName,
       'unitState': instance.unitState,
       'unitType': instance.unitType,

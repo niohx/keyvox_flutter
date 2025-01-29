@@ -22,10 +22,11 @@ Unit _$UnitFromJson(Map<String, dynamic> json) {
 mixin _$Unit {
   String get unitId => throw _privateConstructorUsedError;
   String get unitName => throw _privateConstructorUsedError;
-  String get lockIds => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: _lockIdsFromJson, toJson: _lockIdsToJson)
+  List<String>? get lockIds => throw _privateConstructorUsedError;
   String get placeName => throw _privateConstructorUsedError;
   String get unitState => throw _privateConstructorUsedError;
-  String get unitType => throw _privateConstructorUsedError;
+  String? get unitType => throw _privateConstructorUsedError;
   String get placeType => throw _privateConstructorUsedError;
 
   /// Serializes this Unit to a JSON map.
@@ -45,10 +46,11 @@ abstract class $UnitCopyWith<$Res> {
   $Res call(
       {String unitId,
       String unitName,
-      String lockIds,
+      @JsonKey(fromJson: _lockIdsFromJson, toJson: _lockIdsToJson)
+      List<String>? lockIds,
       String placeName,
       String unitState,
-      String unitType,
+      String? unitType,
       String placeType});
 }
 
@@ -69,10 +71,10 @@ class _$UnitCopyWithImpl<$Res, $Val extends Unit>
   $Res call({
     Object? unitId = null,
     Object? unitName = null,
-    Object? lockIds = null,
+    Object? lockIds = freezed,
     Object? placeName = null,
     Object? unitState = null,
-    Object? unitType = null,
+    Object? unitType = freezed,
     Object? placeType = null,
   }) {
     return _then(_value.copyWith(
@@ -84,10 +86,10 @@ class _$UnitCopyWithImpl<$Res, $Val extends Unit>
           ? _value.unitName
           : unitName // ignore: cast_nullable_to_non_nullable
               as String,
-      lockIds: null == lockIds
+      lockIds: freezed == lockIds
           ? _value.lockIds
           : lockIds // ignore: cast_nullable_to_non_nullable
-              as String,
+              as List<String>?,
       placeName: null == placeName
           ? _value.placeName
           : placeName // ignore: cast_nullable_to_non_nullable
@@ -96,10 +98,10 @@ class _$UnitCopyWithImpl<$Res, $Val extends Unit>
           ? _value.unitState
           : unitState // ignore: cast_nullable_to_non_nullable
               as String,
-      unitType: null == unitType
+      unitType: freezed == unitType
           ? _value.unitType
           : unitType // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       placeType: null == placeType
           ? _value.placeType
           : placeType // ignore: cast_nullable_to_non_nullable
@@ -118,10 +120,11 @@ abstract class _$$UnitImplCopyWith<$Res> implements $UnitCopyWith<$Res> {
   $Res call(
       {String unitId,
       String unitName,
-      String lockIds,
+      @JsonKey(fromJson: _lockIdsFromJson, toJson: _lockIdsToJson)
+      List<String>? lockIds,
       String placeName,
       String unitState,
-      String unitType,
+      String? unitType,
       String placeType});
 }
 
@@ -139,10 +142,10 @@ class __$$UnitImplCopyWithImpl<$Res>
   $Res call({
     Object? unitId = null,
     Object? unitName = null,
-    Object? lockIds = null,
+    Object? lockIds = freezed,
     Object? placeName = null,
     Object? unitState = null,
-    Object? unitType = null,
+    Object? unitType = freezed,
     Object? placeType = null,
   }) {
     return _then(_$UnitImpl(
@@ -154,10 +157,10 @@ class __$$UnitImplCopyWithImpl<$Res>
           ? _value.unitName
           : unitName // ignore: cast_nullable_to_non_nullable
               as String,
-      lockIds: null == lockIds
-          ? _value.lockIds
+      lockIds: freezed == lockIds
+          ? _value._lockIds
           : lockIds // ignore: cast_nullable_to_non_nullable
-              as String,
+              as List<String>?,
       placeName: null == placeName
           ? _value.placeName
           : placeName // ignore: cast_nullable_to_non_nullable
@@ -166,10 +169,10 @@ class __$$UnitImplCopyWithImpl<$Res>
           ? _value.unitState
           : unitState // ignore: cast_nullable_to_non_nullable
               as String,
-      unitType: null == unitType
+      unitType: freezed == unitType
           ? _value.unitType
           : unitType // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       placeType: null == placeType
           ? _value.placeType
           : placeType // ignore: cast_nullable_to_non_nullable
@@ -184,11 +187,13 @@ class _$UnitImpl implements _Unit {
   const _$UnitImpl(
       {required this.unitId,
       required this.unitName,
-      required this.lockIds,
+      @JsonKey(fromJson: _lockIdsFromJson, toJson: _lockIdsToJson)
+      final List<String>? lockIds,
       required this.placeName,
       required this.unitState,
-      required this.unitType,
-      required this.placeType});
+      this.unitType,
+      required this.placeType})
+      : _lockIds = lockIds;
 
   factory _$UnitImpl.fromJson(Map<String, dynamic> json) =>
       _$$UnitImplFromJson(json);
@@ -197,14 +202,23 @@ class _$UnitImpl implements _Unit {
   final String unitId;
   @override
   final String unitName;
+  final List<String>? _lockIds;
   @override
-  final String lockIds;
+  @JsonKey(fromJson: _lockIdsFromJson, toJson: _lockIdsToJson)
+  List<String>? get lockIds {
+    final value = _lockIds;
+    if (value == null) return null;
+    if (_lockIds is EqualUnmodifiableListView) return _lockIds;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
   @override
   final String placeName;
   @override
   final String unitState;
   @override
-  final String unitType;
+  final String? unitType;
   @override
   final String placeType;
 
@@ -221,7 +235,7 @@ class _$UnitImpl implements _Unit {
             (identical(other.unitId, unitId) || other.unitId == unitId) &&
             (identical(other.unitName, unitName) ||
                 other.unitName == unitName) &&
-            (identical(other.lockIds, lockIds) || other.lockIds == lockIds) &&
+            const DeepCollectionEquality().equals(other._lockIds, _lockIds) &&
             (identical(other.placeName, placeName) ||
                 other.placeName == placeName) &&
             (identical(other.unitState, unitState) ||
@@ -234,8 +248,15 @@ class _$UnitImpl implements _Unit {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, unitId, unitName, lockIds,
-      placeName, unitState, unitType, placeType);
+  int get hashCode => Object.hash(
+      runtimeType,
+      unitId,
+      unitName,
+      const DeepCollectionEquality().hash(_lockIds),
+      placeName,
+      unitState,
+      unitType,
+      placeType);
 
   /// Create a copy of Unit
   /// with the given fields replaced by the non-null parameter values.
@@ -257,10 +278,11 @@ abstract class _Unit implements Unit {
   const factory _Unit(
       {required final String unitId,
       required final String unitName,
-      required final String lockIds,
+      @JsonKey(fromJson: _lockIdsFromJson, toJson: _lockIdsToJson)
+      final List<String>? lockIds,
       required final String placeName,
       required final String unitState,
-      required final String unitType,
+      final String? unitType,
       required final String placeType}) = _$UnitImpl;
 
   factory _Unit.fromJson(Map<String, dynamic> json) = _$UnitImpl.fromJson;
@@ -270,13 +292,14 @@ abstract class _Unit implements Unit {
   @override
   String get unitName;
   @override
-  String get lockIds;
+  @JsonKey(fromJson: _lockIdsFromJson, toJson: _lockIdsToJson)
+  List<String>? get lockIds;
   @override
   String get placeName;
   @override
   String get unitState;
   @override
-  String get unitType;
+  String? get unitType;
   @override
   String get placeType;
 
